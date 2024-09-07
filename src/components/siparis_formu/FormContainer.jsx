@@ -24,17 +24,23 @@ const pizzaData = {
   price: 85.5,
   size: 4.9,
   gram: "(200)",
-  text:"Frontent Dev olarak hala position:absolute kullanıyorsan bu çok acı pizza tam sana göre. Pizza, domates, peynir ve genellikle çeşitli diğer malzemelerle kaplanmış, daha sonra geleneksel olarak odun ateşinde bir fırında yüksek sıcaklıkta pişirilen, genellikle yuvarlak, düzleştirilmiş mayalı buğday bazlı hamurdan oluşan İtalyan kökenli lezzetli bir yemektir. Küçük bir pizzaya bazen pizzetta denir."
+  text:"Frontent Dev olarak hala position:absolute kullanıyorsan bu çok acı pizza tam sana göre. Pizza, domates, peynir ve genellikle çeşitli diğer malzemelerle kaplanmış, daha sonra geleneksel olarak odun ateşinde bir fırında yüksek sıcaklıkta pişirilen, genellikle yuvarlak, düzleştirilmiş mayalı buğday bazlı hamurdan oluşan İtalyan kökenli lezzetli bir yemektir. Küçük bir pizzaya bazen pizzetta denir.",
+  kucuk:0.00,
+  orta:40.00,
+  buyuk:70.00,
 };
 
 export default function FormContainer() {
   const [count, setCount] = useState(1);
   const [selectedExtra, setSelectedExtra] = useState([]);
   const [sum, setSum] = useState(0);
+  const [radioSelect,setRadioSelect]=useState(null);
+  const [crustThickness, setCrustThickness] = useState("");
   const history = useHistory();
 
   const handleSubmit = () => {
-    history.push('/Success');
+    event.preventDefault(); 
+  history.push('/Success');
   };
   const increment = () => setCount(count + 1);
   const decrement = () => setCount(count > 1 ? count - 1 : 1);
@@ -50,17 +56,26 @@ export default function FormContainer() {
       return checked;
     });
   };
+  const handleRadioChange = (event) => {
+    const selectedRadio = event.target;
+  setRadioSelect(Number(selectedRadio.value));
+  };
+  const handleCrustChange = (event) => {
+    setCrustThickness(event.target.value);
+  };
   const totalSelectedEx = selectedExtra.length * 5;
   const resultSum = () => {
-    let total = pizzaData.price + totalSelectedEx;
-    if(count>0){
-    total *= count;
-    setSum(total);
-  }
+    let total = pizzaData.price + totalSelectedEx + (Number(radioSelect) || 0);
+    if(count > 0){
+      total *= count;
+      setSum(total);
+    }
   };
   useEffect(() => {
     resultSum();
-  }, [count, selectedExtra]);
+  }, [count, selectedExtra,radioSelect]);
+
+  const isFormValid = radioSelect !==null && crustThickness !== "" && crustThickness !== "Hamur Kalınlığı";
 
   return (
     <Form onSubmit={handleSubmit} className="form-container">
@@ -87,7 +102,9 @@ export default function FormContainer() {
                 type="radio"
                 name="boyut"
                 id="kucuk"
+                value={pizzaData.kucuk}
                 className="form-check-input"
+                onChange={handleRadioChange}
               />
               <Label for="kucuk" className="form-check-label">
                 Küçük
@@ -98,7 +115,9 @@ export default function FormContainer() {
                 type="radio"
                 name="boyut"
                 id="orta"
+                value={pizzaData.orta}
                 className="form-check-input"
+                onChange={handleRadioChange}
               />
               <Label for="orta" className="form-check-label">
                 Orta
@@ -109,7 +128,9 @@ export default function FormContainer() {
                 type="radio"
                 name="boyut"
                 id="buyuk"
+                value={pizzaData.buyuk}
                 className="form-check-input"
+                onChange={handleRadioChange}
               />
               <Label for="buyuk" className="form-check-label">
                 Büyük
@@ -119,7 +140,7 @@ export default function FormContainer() {
         </div>
         <div className="crust-thickness">
           <Label for="crust-thickness" className="bold-text">Hamur Seç</Label>
-          <Input id="crust-thickness" name="select" type="select">
+          <Input id="crust-thickness" name="select" type="select" onChange={handleCrustChange}>
           <option>Hamur Kalınlığı</option>
             <option>İnce</option>
             <option>Normal</option>
@@ -129,8 +150,7 @@ export default function FormContainer() {
       </FormGroup>
       </div>
       <FormGroup>
-        <Label className="bold-text">Ek Malzemeler</Label>
-        <p>En Fazla 10 malzeme seçebilirsiniz. 5₺</p>
+        <Label className="bold-text extMal">Ek Malzemeler </Label><p className="exMal">En Fazla 10 malzeme seçebilirsiniz. 5₺</p>
         <div className="d-flex flex-wrap">
           {extMal.map((extCheck, index) => (
             <FormGroup check inline className="me-3" key={index}>
@@ -162,7 +182,8 @@ export default function FormContainer() {
         />
       </FormGroup>
       <hr />
-      <FormGroup className="form-result">
+      <div className="form-result ">
+
         <div className="result-count d-flex align-items-center justify-content-start">
           <Button className="counting" color="warning" onClick={decrement}>
             -
@@ -174,13 +195,13 @@ export default function FormContainer() {
         </div>
         <div className="result-price">
           <div className="result-price-content">
-          <h4>Sipariş Toplamı</h4>
-          <div className="result-price-item"><p>{`Seçimler: `}</p><span>{`${totalSelectedEx.toFixed(2)}₺`}</span></div>
-          <div className="result-price-item"><p>{`Toplam: `}</p><span>{`${sum.toFixed(2)}₺`}</span></div>
+          <p className="bold-text">Sipariş Toplamı</p>
+          <div className="result-price-item-1"><p>{`Seçimler: `}</p><span>{`${totalSelectedEx.toFixed(2)}₺`}</span></div>
+          <div className="result-price-item-2"><p>{`Toplam: `}</p><span>{`${sum.toFixed(2)}₺`}</span></div>
           </div>
-          <Button className="submit-button" color="warning">SİPARİŞ VER</Button>
         </div>
-      </FormGroup>
+      </div>
+      <div className="form-button"><Button className="submit-button" color="warning" disabled={!isFormValid}>SİPARİŞ VER</Button></div>
     </Form>
   );
 }
