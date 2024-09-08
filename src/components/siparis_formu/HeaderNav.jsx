@@ -16,7 +16,7 @@ const HeaderNav = () => {
   };
 
   return (
-    <nav class="header-nav">
+    <nav className="header-nav">
       <div className='nav-buttons'>
       <button className={`home-button ${activeButton === 'home' ? 'bold' : ''}`}  onClick={handleHomeClick}>Anasayfa</button> - 
       <button className={`order-page-button ${activeButton === 'order' ? 'bold' : ''}`}   onClick={handleOrderFormClick}>Sipariş Oluştur</button>
