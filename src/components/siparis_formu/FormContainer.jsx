@@ -57,6 +57,7 @@ export default function FormContainer() {
       console.log("Form eksik ya da hatalı");
       return;
     }
+    history.push("/Success");
     const formData = {
       name: nameSurname,
       adet: { count },
@@ -70,7 +71,6 @@ export default function FormContainer() {
       .post("https://reqres.in/api/pizza", formData)
       .then((response) => {
         console.log("Sipariş Özeti:", response.data);
-        history.push("/Success");
       })
       .catch((error) => {
         console.error("Bir hata oluştu:", error);
@@ -138,7 +138,7 @@ export default function FormContainer() {
     radioSelect !== null &&
     crustThickness !== "" &&
     crustThickness !== "Hamur Kalınlığı" &&
-    selectedExtra.length > 3;
+    selectedExtra.length > 3 && nameSurname.length>0;
 
   return (
     <Form onSubmit={handleSubmit} className="form-container text-start">
@@ -157,7 +157,7 @@ export default function FormContainer() {
             </div>
           </Col>
         </Row>
-        <FormText className="light-text ">{pizzaData.text}</FormText>
+        <FormText className="light-text expl-text">{pizzaData.text}</FormText>
       </FormGroup>
       <Row className="info-row">
         <Col className="info-col">
@@ -171,6 +171,7 @@ export default function FormContainer() {
                   id={boyut}
                   value={boyut === "orta" ? 40 : boyut === "büyük" ? 70 : 0}
                   onChange={handleRadioChange}
+                  required
                 />
                 <Label for={boyut} className="light-text ">
                   {boyut.charAt(0).toUpperCase() + boyut.slice(1)}
@@ -189,9 +190,10 @@ export default function FormContainer() {
               name="select"
               type="select"
               onChange={handleCrustChange}
-              className="w-75"
+              className="w-75 light-text"
+              required
             >
-              <option className="light-text ">Hamur Kalınlığı</option>
+              <option className="light-text">Hamur Kalınlığı</option>
               {pizzaData.crustThickness.map((thickness, index) => (
                 <option className="light-text " key={index} value={thickness}>
                   {thickness.charAt(0).toUpperCase() + thickness.slice(1)}
@@ -206,13 +208,13 @@ export default function FormContainer() {
         <p className="light-text ">
           En Fazla 10 malzeme seçebilirsiniz. Lütfen en az 4 malzeme seçin (5₺)
         </p>
-        <Row className="info-row">
+        <Row className="info-row mobile-check">
           {pizzaData.extMal.map((extCheck, index) => (
             <Col
               key={index}
-              xs="6"
+              xs="5"
               sm="4"
-              className="info-col text-start d-flex align-items-center"
+              className="info-col text-start d-flex align-items-center checks"
             >
               <FormGroup check inline>
                 <Input
