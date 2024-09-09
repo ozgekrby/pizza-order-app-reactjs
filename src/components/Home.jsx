@@ -9,7 +9,7 @@ export default function Anasayfa() {
 
   return (
     <div className='home'>
-      <img src="Assets/Iteration-1-assets/kod-aciktirir.svg" alt="" />
+    <img src="Assets/Iteration-1-assets/kod-aciktirir.svg" alt="" />
       <div className="btn1"><button onClick={handleOrderFormClick} className='main-button'>
     ACIKTIM
   </button></div>

@@ -49,6 +49,14 @@ export default function FormContainer() {
   const [nameSurname, setNameSurname] = useState("");
   const [notes, setNotes] = useState("");
   const [size, setSize] = useState("");
+  const [errors, setErrors] = useState({});
+  const [isFormValid, setIsValid] = useState(false);
+  const [touched, setTouched] = useState({
+    size: false,
+    crust: false,
+    ext: false,
+    nameArea: false,
+  });
   const history = useHistory();
 
   const handleSubmit = (event) => {
@@ -89,19 +97,23 @@ export default function FormContainer() {
       }
       return checked;
     });
+    setTouched((prev) => ({ ...prev, ext: true }));
   };
 
   const handleRadioChange = (event) => {
     const selectedRadio = event.target;
     setRadioSelect(Number(selectedRadio.value));
     setSize(event.target.id);
+    setTouched((prev) => ({ ...prev, size: true }));
   };
 
   const handleCrustChange = (event) => {
     setCrustThickness(event.target.value);
+    setTouched((prev) => ({ ...prev, crust: true }));
   };
   const handleNameChange = (event) => {
     setNameSurname(event.target.value);
+    setTouched((prev) => ({ ...prev, nameArea: true }));
   };
   const handleNoteChange = (event) => {
     setNotes(event.target.value);
@@ -134,11 +146,38 @@ export default function FormContainer() {
     resultSum();
   }, [count, selectedExtra, radioSelect, crustThickness]);
 
-  const isFormValid =
-    radioSelect !== null &&
-    crustThickness !== "" &&
-    crustThickness !== "Hamur Kalınlığı" &&
-    selectedExtra.length > 3 && nameSurname.length>0;
+  useEffect(() => {
+    const error = {};
+    const errorMessages = {
+      size: "Lütfen pizza boyutunu seçin",
+      crust: "Lütfen hamur kalınlığını seçin",
+      ext: "Lütfen en az 4 adet extra malzeme seçin",
+      nameArea: "Lütfen adınızı soyadınızı giriniz",
+    };
+
+    if (radioSelect === null) {
+      error.size = errorMessages.size;
+    }
+    if (crustThickness === "Hamur Kalınlığı") {
+      error.crust = errorMessages.crust;
+    }
+    if (selectedExtra.length < 4) {
+      error.ext = errorMessages.ext;
+    }
+    if (!nameSurname.trim().includes(" ") || nameSurname.length < 4) {
+      error.nameArea = errorMessages.nameArea;
+    }
+
+    setErrors(error);
+    setIsValid(
+      radioSelect !== null &&
+        crustThickness !== "Hamur Kalınlığı" &&
+        selectedExtra.length >= 4 &&
+        nameSurname.trim().includes(" ") &&
+        nameSurname.trim().length > 4 &&
+        touched.crust !== false
+    );
+  }, [count, selectedExtra, radioSelect, crustThickness, nameSurname]);
 
   return (
     <Form onSubmit={handleSubmit} className="form-container text-start">
@@ -171,6 +210,7 @@ export default function FormContainer() {
                   id={boyut}
                   value={boyut === "orta" ? 40 : boyut === "büyük" ? 70 : 0}
                   onChange={handleRadioChange}
+                  invalid={!!errors.size && touched.size}
                   required
                 />
                 <Label for={boyut} className="light-text ">
@@ -178,6 +218,9 @@ export default function FormContainer() {
                 </Label>
               </div>
             ))}
+            {touched.size && errors.size && (
+              <p className="red-text">{errors.size}</p>
+            )}
           </FormGroup>
         </Col>
         <Col className="info-col">
@@ -185,12 +228,16 @@ export default function FormContainer() {
             <Label for="crust-thickness" className="bold-text">
               Hamur Seç
             </Label>
+            {touched.crust && errors.crust && (
+              <p className="red-text">{errors.crust}</p>
+            )}
             <Input
               id="crust-thickness"
               name="select"
               type="select"
               onChange={handleCrustChange}
               className="w-75 light-text"
+              invalid={!!errors.crust && touched.crust}
               required
             >
               <option className="light-text">Hamur Kalınlığı</option>
@@ -208,6 +255,7 @@ export default function FormContainer() {
         <p className="light-text ">
           En Fazla 10 malzeme seçebilirsiniz. Lütfen en az 4 malzeme seçin (5₺)
         </p>
+        {touched.ext && errors.ext && <p className="red-text">{errors.ext}</p>}
         <Row className="info-row mobile-check">
           {pizzaData.extMal.map((extCheck, index) => (
             <Col
@@ -223,6 +271,7 @@ export default function FormContainer() {
                   value={extCheck}
                   checked={selectedExtra.includes(extCheck)}
                   onChange={handleSelectChange}
+                  invalid={!!errors.ext && touched.ext}
                   disabled={
                     selectedExtra.length >= 10 &&
                     selectedExtra.length < 4 &&
@@ -241,11 +290,15 @@ export default function FormContainer() {
         <Label for="isim" className="bold-text">
           Adınız Soyadınız:
         </Label>
+        {touched.nameArea && errors.nameArea && (
+          <p className="red-text">{errors.nameArea}</p>
+        )}
         <Input
           id="isim"
           name="isim"
           placeholder="Lütfen adınızı ve soyadınızı girin"
           className="light-text"
+          invalid={!!errors.nameArea && touched.nameArea}
           onChange={handleNameChange}
         />
       </FormGroup>
@@ -265,9 +318,7 @@ export default function FormContainer() {
       <hr />
       <FormGroup className="info-form">
         <div className="counting">
-          <Button color="warning" className="counting-item" onClick={decrement}>
-            -
-          </Button>
+          <Button color="warning" className="counting-item" onClick={decrement}>-</Button>
           <div className="counting-item counting-item-number">{count}</div>
           <Button color="warning" className="counting-item" onClick={increment}>
             +
