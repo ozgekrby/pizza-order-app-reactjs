@@ -65,7 +65,10 @@ export default function FormContainer() {
       console.log("Form eksik ya da hatalı");
       return;
     }
-    history.push("/Success");
+    else{
+      history.push("/success");
+    }
+    
     const formData = {
       name: nameSurname,
       adet: { count },
@@ -84,6 +87,7 @@ export default function FormContainer() {
         console.error("Bir hata oluştu:", error);
       });
   };
+
   const increment = () => setCount(count + 1);
   const decrement = () => setCount(count > 1 ? count - 1 : 1);
 
