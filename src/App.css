@@ -198,7 +198,7 @@ body {
   display: inline;
   padding: 13%;
   font-weight: 600;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 .result-sum {
   width: 68%;
@@ -342,7 +342,7 @@ body {
     width: 33%;
   }
   .counting-item-number {
-    font-size: 1rem;
+    font-size: 0.8rem;
     padding: 13% !important;
   }
 }
@@ -460,7 +460,7 @@ body {
     width: 33%;
   }
   .counting-item-number {
-    font-size: 1rem;
+    font-size: 0.8rem;
     padding: 13% !important;
   }
 }
