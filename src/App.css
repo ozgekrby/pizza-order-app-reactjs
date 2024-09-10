@@ -196,9 +196,9 @@ body {
   border: none;
   color: var(--Koyu-Gri);
   display: inline;
-  padding: 13%;
+  padding: 10%;
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 .result-sum {
   width: 68%;
@@ -233,6 +233,120 @@ body {
 .result-header-text {
   font-size: 0.9rem;
 }
+@media (max-width: 1280px) {
+  .header-default,
+  .header-home {
+    padding: 0 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+  .header-default img
+ {
+    width: 20rem;
+    margin:8% auto;
+  }
+  .header-home img{
+    width: 20rem;
+    margin: 20% auto ;
+    margin-top: 50%;
+  }
+  .home img{
+    width: 20rem;
+    margin-top: 25%;
+  }
+  .success{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .success-text{
+    width: 100%;
+    height: 40%;
+  }
+  .success p {
+    font-size: 5rem;
+    letter-spacing: 0.1rem;
+    margin: 0;
+    padding: 0;
+  }
+  #order-form {
+    width: 50%;
+  }
+  .header-nav {
+    margin-top: -2.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .home-button,
+  .order-page-button {
+    font-size: 1rem;
+  }
+  
+  .bold-text {
+    font-size: 1rem;
+  }
+  .expl-text {
+    font-size: 1rem !important;
+  }
+  .light-text {
+    font-size: 0.9rem;
+  }
+  #crust-thickness {
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 5%;
+    height: 1.5rem;
+    width: 87% !important;
+    padding: 0 2%;
+  }
+  #crust-thickness option {
+    font-size: 0.8rem;
+  }
+  .medium-text {
+    font-size: 0.9rem;
+  }
+  .mobile-check{
+    column-gap: 3rem;
+  }
+  #isim {
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 2% 2%;
+  }
+  #order-note {
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 2% 2%;
+  }
+  .info-form:first-child {
+    justify-content: flex-end;
+  }
+  .result-sum {
+    order: 1;
+    width: 100%;
+    padding: 0 !important;
+  }
+  .counting {
+    order: 2;
+    height: 20%;
+    width: 48%;
+  }
+  .submit {
+    order: 3;
+    margin: 0;
+    width: 50%;
+  }
+  .counting-item {
+    height: 100%;
+    width: 33%;
+  }
+  .counting-item-number {
+    font-size: 0.8rem;
+    padding: 13% !important;
+  }
+}
+
 @media (max-width: 767px) {
   .header-default,
   .header-home {
