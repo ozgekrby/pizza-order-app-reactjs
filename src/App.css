@@ -253,8 +253,12 @@ body {
     margin-top: 50%;
   }
   .home img{
-    width: 20rem;
-    margin-top: 25%;
+    width: 35rem;
+    margin-top: 20%;
+    margin-bottom: 8%;
+  }
+  .main-button{
+    padding: 1% 5%;
   }
   .success{
     display: flex;
@@ -369,6 +373,10 @@ body {
   .home img{
     width: 20rem;
     margin-top: 25%;
+  }
+  
+  .main-button{
+    padding: 0.5% 3%;
   }
   .success{
     display: flex;
