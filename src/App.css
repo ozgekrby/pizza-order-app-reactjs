@@ -262,11 +262,11 @@ body {
     align-items: center;
   }
   .success-text{
-    width: 100%;
+    width: 60%;
     height: 40%;
   }
   .success p {
-    font-size: 5rem;
+    font-size: 3rem;
     letter-spacing: 0.1rem;
     margin: 0;
     padding: 0;
