@@ -97,10 +97,9 @@ export default function FormContainer({ setOrderData }) {
     setSelectedExtra((checked) => {
       if (checked.includes(selectedEx)) {
         return checked.filter((item) => item !== selectedEx);
-      } else if (checked.length < 10) {
+      } else {
         return [...checked, selectedEx];
       }
-      return checked;
     });
     setTouched((prev) => ({ ...prev, ext: true }));
   };
@@ -170,7 +169,7 @@ export default function FormContainer({ setOrderData }) {
     if (selectedExtra.length < 4) {
       error.ext = errorMessages.ext;
     }
-    if (selectedExtra.length >= 10) {
+    if (selectedExtra.length > 10) {
       error.ext10 = errorMessages.ext10;
     }
     if (!nameSurname.trim().includes(" ") || nameSurname.length < 4) {
@@ -182,6 +181,7 @@ export default function FormContainer({ setOrderData }) {
       radioSelect !== null &&
         crustThickness !== "Hamur Kalınlığı" &&
         selectedExtra.length >= 4 &&
+        selectedExtra.length < 11 &&
         nameSurname.trim().includes(" ") &&
         nameSurname.trim().length > 4 &&
         touched.crust !== false
@@ -307,10 +307,6 @@ export default function FormContainer({ setOrderData }) {
                   checked={selectedExtra.includes(extCheck)}
                   onChange={handleSelectChange}
                   data-cy={`checkbox-${extCheck}`}
-                  disabled={
-                    selectedExtra.length >= 10 &&
-                    !selectedExtra.includes(extCheck)
-                  }
                 />
                 <Label className="medium-text" check for={`extCheck-${index}`}>
                   {extCheck}

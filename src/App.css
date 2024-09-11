@@ -31,32 +31,42 @@ body {
 .home {
   background-image: url("Assets/Iteration-1-assets/home-banner.png");
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap:2.3rem;
+  padding-top: 8%;
+  gap:1.5rem;
 }
-
-.header-home,
-.header-default {
-  background-color: var(--Kırmızı);
-  text-align: center;
-  padding: 5% 10%;
-  width: 100%;
-}
-
 .header-home {
-  z-index: 3;
-  padding: 5% 0;
+  position: absolute;
+  background:none;
+  width: 100%;
+  z-index: 0;
+  margin-top: 3%;
+}
+.header-home img{
+  height: 4rem;
+}
+.firsat{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap:0;
+}
+.firsat p{
+  font-family: Satisfy;
+font-size: 2rem;
+font-weight: 400;
+text-align: center;
+color: var(--Sarı);
+margin: 0;
 }
 .home img {
 margin:0;
-width: 50%;
+width: 30%;
 }
 
 .main-button {
@@ -67,14 +77,85 @@ width: 50%;
   font-weight: 600;
   text-align: center;
   border: none;
-  padding: 0.5% 1%;
+  padding: 0.5% 1.5%;
 }
 .menu-section{
   display: flex;
   gap:2rem;
+  font-family: Barlow;
+font-size: 1rem;
+font-weight: 700;
+text-align: left;
+color: var(--Koyu-Gri);
+text-decoration: none;
+margin: 1% auto;
 }
 .menu-items{
   width: 11rem;
+}
+.promotion-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1.5rem;
+}
+
+.promotion-section > :nth-child(1) {
+  grid-column: 1;
+  grid-row: span 2; 
+}
+
+.promotion-section > :nth-child(2),
+.promotion-section > :nth-child(3) {
+  grid-column: 2; 
+}
+
+.promotion-section > :nth-child(2) {
+  grid-row: 1;
+}
+
+.promotion-section > :nth-child(3) {
+  grid-row: 2;
+}
+.card-overlay{
+  margin-right: 40%;
+  padding-top: 10% !important;
+  text-align: left;
+}
+.important{
+  font-family: Barlow;
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: left;
+  color: var(--Kırmızı);
+}
+.overlay-name-1{
+  font-family: Quattrocento;
+font-size: 4rem;
+font-weight: 700;
+text-align: left;
+
+}
+.overlay-name-2{
+  font-family: Quattrocento;
+font-size: 2rem;
+font-weight: 700;
+text-align: left;
+margin-right: 40%;
+}
+.overlay-name-3{
+  font-family: Barlow;
+font-size: 2rem;
+font-weight: 600;
+text-align: left;
+margin-right: 40%;
+color: var(--Koyu-Gri);
+}
+.overlay-exp{
+  font-family: Barlow;
+font-size: 1.2rem;
+font-weight: 600;
+text-align: left;
+
 }
 .success {
   background: var(--Kırmızı);

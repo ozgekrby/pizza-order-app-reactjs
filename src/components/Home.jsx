@@ -34,7 +34,7 @@ const promotional = [
     important: null,
   },
   {
-    name: "Hızlı npm gibi kurye",
+    name: "hızlı npm gibi kurye",
     exp: null,
     important: "Çooook",
   },
@@ -77,7 +77,10 @@ export default function Anasayfa() {
   return (
     <>
       <section className="home">
-        <img src="Assets/Iteration-1-assets/kod-aciktirir.svg" alt="" />
+        
+        <div className="firsat">
+        <p>fırsatı kaçırma</p>
+          <img src="Assets/Iteration-1-assets/kod-aciktirir.svg" alt="" /></div>
         <div className="btn1">
           <button onClick={handleOrderFormClick} className="main-button">
             ACIKTIM
@@ -90,28 +93,32 @@ export default function Anasayfa() {
             <Nav key={i} className="menu-items">
               <NavItem className="w-100 d-flex">
                 <img src={`Assets/Iteration-2-aseets/icons/${i + 1}.svg`} />
-                <NavLink href="#">{item}</NavLink>
+                <NavLink disabled href="#">{item}</NavLink>
               </NavItem>
             </Nav>
           );
         })}
       </section>
-      {promotional.map((item, index) => {
-        return (
-          <Card inverse>
-            <CardImg
-              src={`Assets/Iteration-2-aseets/cta/kart-${index + 1}.png`}
-              width="100%"
-            />
-            <CardImgOverlay>
-              {item.important && <CardText>{item.important}</CardText>}
-              <CardText>{item.name}</CardText>
-              {item.exp && <CardText>{item.exp}</CardText>}
-              <Button onClick={handleOrderFormClick}>Sipariş Ver</Button>
-            </CardImgOverlay>
-          </Card>
-        );
-      })}
+      <section className="promotion-section">
+  {promotional.map((item, index) => {
+    return (
+      <Card inverse key={index}>
+        <CardImg
+          src={`Assets/Iteration-2-aseets/cta/kart-${index + 1}.png`}
+        />
+        <CardImgOverlay className="card-overlay">
+          {item.important && <span className="important">{item.important} </span>}
+          <span className={`overlay-name-${index+1}`}>{item.name}</span>
+          <br />
+          {item.exp && <CardText className="overlay-exp">{item.exp}</CardText>}
+          <Button onClick={handleOrderFormClick}>Sipariş Ver</Button>
+        </CardImgOverlay>
+      </Card>
+    );
+  })}
+</section>
+
+
       <div>
         <p>en çopk paketlenen menüler</p>
         <p>Acıktıran Kodlara Doyuran Lezzetler</p>
