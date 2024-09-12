@@ -5,10 +5,13 @@ import HeaderNav from './HeaderNav';
 import Footer from '../Footer';
 export default function OrderForm({ setOrderData }) {
   return (
+    <>
       <div id="order-form">
         <HeaderNav />
         <FormContainer setOrderData={setOrderData }/>
-        <Footer/>
+        
       </div>
+      <Footer/>
+      </>
   )
 }

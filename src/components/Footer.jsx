@@ -41,21 +41,21 @@ export default function Footer() {
 
   return (
     <div className="footer">
-      <Container>
+      <Container className="address">
         <Row>
-          <Col sm={12}>
-            <h4>Teknolojik Yemekler</h4>
+          <Col>
+<img src="Assets/Iteration-1-assets/logo.svg" alt="" className="svg-logo" />
           </Col>
         </Row>
         <Row>
-          <Col sm={12}>
+          <Col>
             {address.map((item, i) => {
               return (
                 <div key={i}>
                   <img 
                     src={`Assets/Iteration-2-aseets/footer/icons/icon-${i + 1}.png`}
                   />
-                  <p>{item}</p>
+                  <span> {item}</span>
                 </div>
               );
             })}
@@ -63,17 +63,17 @@ export default function Footer() {
         </Row>
       </Container>
     
-      <Nav vertical>
-        <NavbarText>Hot Menu</NavbarText>
+      <Nav vertical className="footer-menu">
+        <h4>Hot Menu</h4>
         {navFooter.map((item,i)=>{
             return <NavItem key={i}>
-          <NavLink disabled href="#">
+          <NavLink disabled href="#" style={{color: '#faf7f2' }}>
             {item}
           </NavLink>
         </NavItem>
         })}
       </Nav>
-      <div>
+      <div className="footer-instagram">
         <p>Instagram</p>
         {instagram.map((item,i)=>{
             return <img key={i} src={`Assets/Iteration-2-aseets/footer/insta/li-${i}.png`} alt={item.alt}/>

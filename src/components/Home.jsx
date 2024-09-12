@@ -79,7 +79,7 @@ export default function Anasayfa() {
       <section className="home">
         
         <div className="firsat">
-        <p>fırsatı kaçırma</p>
+        <p className="italic-text">fırsatı kaçırma</p>
           <img src="Assets/Iteration-1-assets/kod-aciktirir.svg" alt="" /></div>
         <div className="btn1">
           <button onClick={handleOrderFormClick} className="main-button">
@@ -111,7 +111,7 @@ export default function Anasayfa() {
           <span className={`overlay-name-${index+1}`}>{item.name}</span>
           <br />
           {item.exp && <CardText className="overlay-exp">{item.exp}</CardText>}
-          <Button onClick={handleOrderFormClick}>Sipariş Ver</Button>
+          <button className="siparis-ver"onClick={handleOrderFormClick}>SİPARİŞ VER</button>
         </CardImgOverlay>
       </Card>
     );
@@ -120,8 +120,10 @@ export default function Anasayfa() {
 
 
       <div>
-        <p>en çopk paketlenen menüler</p>
-        <p>Acıktıran Kodlara Doyuran Lezzetler</p>
+        <p className="italic-text" style={{ color: "#CE2829",marginTop:"2rem"
+ }}>en çopk paketlenen menüler</p>
+        <p className="bold-text" style={{ fontSize: "3rem",marginTop:"1rem"
+ }}>Acıktıran Kodlara Doyuran Lezzetler</p>
       </div>
       <section className="menu-section">
         {menus2.map((item, i) => {
@@ -129,38 +131,42 @@ export default function Anasayfa() {
             <Nav key={i} className="menu-items">
               <NavItem className="w-100 d-flex">
                 <img src={`Assets/Iteration-2-aseets/icons/${i + 1}.svg`} />
-                <NavLink href="#">{item}</NavLink>
+                <NavLink disabled href="#">{item}</NavLink>
               </NavItem>
             </Nav>
           );
         })}
       </section>
-      <section className="products-section">
-        {products.map((item, i) => {
-          return (
-            <Card
-              style={{
-                width: "18rem",
-              }}
-            >
-              <img
-                alt="Card"
-                src={`Assets/Iteration-2-aseets/pictures/food-${i + 1}.png`}
-              />
-              <CardBody>
-                <CardTitle tag="h5">{item.name}</CardTitle>
-              </CardBody>
-              <CardBody>
-                <CardText>
-                  <span>{item.size}</span>
-                  <span>{item.gram}</span>
-                  <span>{item.price}</span>
-                </CardText>
-              </CardBody>
-            </Card>
-          );
-        })}
-      </section>
+      <section className="container">
+  <div className="row">
+    {products.map((item, i) => {
+      return (
+        <div className="col-md-4" key={i}>
+          <Card className="product-card" style={{ width: "100%" }}>
+            <img
+              alt="Card"
+              src={`Assets/Iteration-2-aseets/pictures/food-${i + 1}.png`}
+              className="card-img-top"
+            />
+            <CardBody>
+              <CardTitle tag="h5">{item.name}</CardTitle>
+            </CardBody>
+            <CardBody>
+              <CardText className="d-flex justify-content-between align-items-center light-text">
+                <span>{item.size}</span>
+                <div className="d-flex justify-content-between  align-items-center w-25 ">
+                <span >{item.gram}</span> 
+                <span className="bold-text">{item.price}</span>
+                </div>
+              </CardText>
+            </CardBody>
+          </Card>
+        </div>
+      );
+    })}
+  </div>
+</section>
+
       <Footer />
     </>
   );

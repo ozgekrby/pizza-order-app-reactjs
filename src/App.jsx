@@ -8,6 +8,7 @@ import Success from "./components/Success";
 
 function App() {
   const [orderData, setOrderData] = useState({
+    pizzaName:"",
     name: "",
     adet: "",
     size: "",

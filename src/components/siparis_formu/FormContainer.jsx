@@ -36,8 +36,8 @@ const pizzaData = {
     "Ananas",
     "Kabak",
   ],
-  sizeChoose: ["küçük", "orta", "büyük"],
-  crustThickness: ["ince", "normal", "kalın"],
+  sizeChoose: ["S", "M", "L"],
+  crustThickness: ["İnce", "Normal", "Kalın"],
 };
 
 export default function FormContainer({ setOrderData }) {
@@ -67,15 +67,16 @@ export default function FormContainer({ setOrderData }) {
     } else {
       history.push("/success");
     }
-
+const pizzaName=pizzaData.name;
     const formData = {
+      pizzaName:pizzaName,
       name: nameSurname,
-      adet: { count },
+      adet:count,
       size: size,
       crust: crustThickness,
       extras: selectedExtra,
-      extPrice: totalSelectedEx,
-      total: sum,
+      extPrice: totalSelectedEx.toFixed(2),
+      total: sum.toFixed(2),
       note: notes,
     };
     axios
@@ -226,7 +227,7 @@ export default function FormContainer({ setOrderData }) {
                   type="radio"
                   name="boyut"
                   id={boyut}
-                  value={boyut === "orta" ? 40 : boyut === "büyük" ? 70 : 0}
+                  value={boyut === "M" ? 40 : boyut === "L" ? 70 : 0}
                   onChange={handleRadioChange}
                   invalid={!!errors.size && touched.size}
                   data-cy={`radio-${boyut}`}
