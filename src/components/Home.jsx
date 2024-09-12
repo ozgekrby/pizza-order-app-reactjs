@@ -152,13 +152,13 @@ export default function Anasayfa() {
               <CardTitle tag="h5">{item.name}</CardTitle>
             </CardBody>
             <CardBody>
-              <CardText className="d-flex justify-content-between align-items-center light-text">
+              <div className="d-flex justify-content-between align-items-center light-text">
                 <span>{item.size}</span>
                 <div className="d-flex justify-content-between  align-items-center w-25 ">
                 <span >{item.gram}</span> 
                 <span className="bold-text">{item.price}</span>
                 </div>
-              </CardText>
+              </div>
             </CardBody>
           </Card>
         </div>
