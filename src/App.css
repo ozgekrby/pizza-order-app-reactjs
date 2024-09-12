@@ -44,6 +44,11 @@ body {
   z-index: 0;
   margin-top: 3%;
 }
+.header-default {
+  background:var(--Kırmızı);
+  width: 100%;
+  padding: 2%;
+}
 .header-home img{
   height: 3rem;
 }
