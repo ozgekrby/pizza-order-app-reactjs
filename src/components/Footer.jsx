@@ -44,7 +44,7 @@ export default function Footer() {
       <Container className="address">
         <Row>
           <Col>
-<img src="Assets/Iteration-1-assets/logo.svg" alt="" className="svg-logo" />
+<img src="Assets/Iteration-1-assets/Teknolojik Yemekler.svg" alt="" className="svg-logo" />
           </Col>
         </Row>
         <Row>

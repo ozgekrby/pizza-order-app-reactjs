@@ -88,22 +88,26 @@ export default function Anasayfa() {
         </div>
       </section>
       <section className="menu-section">
+      <div className="respon-home-nav">
         {menus.map((item, i) => {
           return (
+           
             <Nav key={i} className="menu-items">
-              <NavItem className="w-100 d-flex">
+              <NavItem className="w-100 d-flex respon-item">
                 <img src={`Assets/Iteration-2-aseets/icons/${i + 1}.svg`} />
                 <NavLink disabled href="#">{item}</NavLink>
               </NavItem>
             </Nav>
+            
           );
         })}
+        </div>
       </section>
       <section className="promotion-section">
   {promotional.map((item, index) => {
     return (
-      <Card inverse key={index}>
-        <CardImg
+      <Card inverse key={index} className="home-card">
+        <CardImg className="custom-card-img" 
           src={`Assets/Iteration-2-aseets/cta/kart-${index + 1}.png`}
         />
         <CardImgOverlay className="card-overlay">

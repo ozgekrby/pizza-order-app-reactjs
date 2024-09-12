@@ -51,6 +51,13 @@ body {
 }
 .header-home img{
   height: 3rem;
+  color:var(--Bej);
+  border: none;
+}
+.header-default img{
+  height: 3rem;
+  color:var(--Bej);
+  border: none;
 }
 .firsat{
   display: flex;
@@ -406,32 +413,74 @@ list-style-type: none;
 .result-header-text {
   font-size: 0.9rem;
 }
+.respon-home-nav{
+  display: flex;
+  gap:2rem;
+}
 @media (max-width: 1280px) {
-  .header-default,
-  .header-home {
-    padding: 0 !important;
+  .menu-section{
     display: flex;
+    gap:5rem;
+  font-size: 1rem;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+  }
+ 
+  .respon-home-nav{
+    display: flex;
+    width: 80%;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 10rem;
+    row-gap: 2rem;
+  }
+  .promotion-section {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    row-gap: 1rem;
+    padding-top: 1rem;
+  }
+  .home-card{
+    width: 80%;
+  }
+  .custom-card-img{
+    height: 55vh;
+    object-fit:cover;
+  }
+  
+.card-overlay{
+  margin-right: 30%;
+  margin-left: 5%;
+  line-height: 2rem;
+  padding-top: 15% !important;
+}
+.important{
+  font-size: 4rem;
+  font-weight: 600;
+  text-align: left;
+  color: var(--Kırmızı);
+}
+.overlay-name-1{
+font-size: 5rem;
+font-weight: 600;
+line-height: 4rem;
+}
+.overlay-name-2{
+font-size: 3rem;
+margin-right: 40%;
+}
+.overlay-name-3{
+font-size: 4rem;
+margin-right: 50%;
+}
+.overlay-exp{
+font-size: 1.2rem;
 
-  }
-  .header-default img
- {
-    width: 20rem;
-    margin:8% auto;
-  }
-  .header-home img{
-    width: 20rem;
-    margin: 20% auto ;
-    margin-top: 50%;
-  }
-  .home img{
-    width: 35rem;
-   margin-top: 15%;
-  }
-  .main-button{
-    padding: 1% 5%;
-  }
+}
+
   .success{
     display: flex;
     justify-content: center;

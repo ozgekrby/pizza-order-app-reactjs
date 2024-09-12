@@ -6,7 +6,7 @@ export default function Header() {
   const headerClass = (location.pathname === "/siparis-olustur" ) ? 'header-default' : 'header-home';
   return (
     <div className={headerClass}>
-      <img src="Assets/Iteration-1-assets/logo.svg" alt="" />
+      <img src="Assets/Iteration-1-assets/Teknolojik Yemekler.svg" alt="" className="svg-logo" />
     </div>
   )
 }

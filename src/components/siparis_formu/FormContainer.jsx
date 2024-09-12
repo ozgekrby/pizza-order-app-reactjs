@@ -65,8 +65,8 @@ export default function FormContainer({ setOrderData }) {
       console.log("Form eksik ya da hatalı");
       return;
     } else {
-      history.push("/success");
-    }
+      
+    
 const pizzaName=pizzaData.name;
     const formData = {
       pizzaName:pizzaName,
@@ -84,10 +84,12 @@ const pizzaName=pizzaData.name;
       .then((response) => {
         console.log("Sipariş Özeti:", response.data);
         setOrderData(formData);
+        history.push("/success");
       })
       .catch((error) => {
         console.error("Bir hata oluştu:", error);
       });
+    }
   };
 
   const increment = () => setCount(count + 1);
