@@ -37,7 +37,7 @@ const pizzaData = {
     "Kabak",
   ],
   sizeChoose: ["S", "M", "L"],
-  crustThickness: ["İnce", "Normal", "Kalın"],
+  crustThickness: ["ince", "normal", "kalın"],
 };
 
 export default function FormContainer({ setOrderData }) {
