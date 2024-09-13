@@ -49,6 +49,7 @@ export default function FormContainer({ setOrderData }) {
   const [nameSurname, setNameSurname] = useState("");
   const [notes, setNotes] = useState("");
   const [size, setSize] = useState("");
+  const [hizliTeslimat, setHizliTeslimat] = useState(false);
   const [errors, setErrors] = useState({});
   const [isFormValid, setIsValid] = useState(false);
   const [touched, setTouched] = useState({
@@ -65,30 +66,29 @@ export default function FormContainer({ setOrderData }) {
       console.log("Form eksik ya da hatalı");
       return;
     } else {
-      
-    
-const pizzaName=pizzaData.name;
-    const formData = {
-      pizzaName:pizzaName,
-      name: nameSurname,
-      adet:count,
-      size: size,
-      crust: crustThickness,
-      extras: selectedExtra,
-      extPrice: totalSelectedEx.toFixed(2),
-      total: sum.toFixed(2),
-      note: notes,
-    };
-    axios
-      .post("https://reqres.in/api/pizza", formData)
-      .then((response) => {
-        console.log("Sipariş Özeti:", response.data);
-        setOrderData(formData);
-        history.push("/success");
-      })
-      .catch((error) => {
-        console.error("Bir hata oluştu:", error);
-      });
+      const pizzaName = pizzaData.name;
+      const formData = {
+        pizzaName: pizzaName,
+        name: nameSurname,
+        adet: count,
+        size: size,
+        crust: crustThickness,
+        extras: selectedExtra,
+        extPrice: totalSelectedEx.toFixed(2),
+        total: sum.toFixed(2),
+        note: notes,
+        teslimat: hizliTeslimat ? "İstiyorum" : "İstemiyorum",
+      };
+      axios
+        .post("https://reqres.in/api/pizza", formData)
+        .then((response) => {
+          console.log("Sipariş Özeti:", response.data);
+          setOrderData(response.data);
+          history.push("/success");
+        })
+        .catch((error) => {
+          console.error("Bir hata oluştu:", error);
+        });
     }
   };
 
@@ -96,15 +96,24 @@ const pizzaName=pizzaData.name;
   const decrement = () => setCount(count > 1 ? count - 1 : 1);
 
   const handleSelectChange = (event) => {
-    const selectedEx = event.target.value;
-    setSelectedExtra((checked) => {
-      if (checked.includes(selectedEx)) {
-        return checked.filter((item) => item !== selectedEx);
+    const selectedEx = event.target;
+    if (selectedEx.name === "extCheck") {
+      setSelectedExtra((checked) => {
+        if (checked.includes(selectedEx.value)) {
+          return checked.filter((item) => item !== selectedEx.value);
+        } else {
+          return [...checked, selectedEx.value];
+        }
+      });
+      setTouched((prev) => ({ ...prev, ext: true }));
+    } else {
+      if (hizliTeslimat) {
+        setHizliTeslimat(false);
+        return;
       } else {
-        return [...checked, selectedEx];
+        setHizliTeslimat(true);
       }
-    });
-    setTouched((prev) => ({ ...prev, ext: true }));
+    }
   };
 
   const handleRadioChange = (event) => {
@@ -143,15 +152,16 @@ const pizzaName=pizzaData.name;
       totalSelectedEx +
       (Number(radioSelect) || 0) +
       crustPrice;
-    if (count > 0) {
-      total *= count;
-      setSum(total);
+    if (hizliTeslimat) {
+      total += 50;
     }
+    total *= count;
+    setSum(total);
   };
 
   useEffect(() => {
     resultSum();
-  }, [count, selectedExtra, radioSelect, crustThickness]);
+  }, [count, selectedExtra, radioSelect, crustThickness, hizliTeslimat]);
 
   useEffect(() => {
     const error = {};
@@ -189,7 +199,14 @@ const pizzaName=pizzaData.name;
         nameSurname.trim().length > 4 &&
         touched.crust !== false
     );
-  }, [count, selectedExtra, radioSelect, crustThickness, nameSurname]);
+  }, [
+    count,
+    selectedExtra,
+    radioSelect,
+    crustThickness,
+    nameSurname,
+    hizliTeslimat,
+  ]);
 
   return (
     <Form
@@ -221,10 +238,12 @@ const pizzaName=pizzaData.name;
 
       <Row className="info-row">
         <Col className="info-col">
-          <FormGroup className="text-start">
-            <p className="bold-text">Boyut Seçimi</p>
+          <p className="bold-text">
+            Boyut Seç <span className="red-text">*</span>
+          </p>
+          <FormGroup className="text-start d-flex">
             {pizzaData.sizeChoose.map((boyut, index) => (
-              <div key={index}>
+              <div key={index} className="radio-container">
                 <Input
                   type="radio"
                   name="boyut"
@@ -232,11 +251,12 @@ const pizzaName=pizzaData.name;
                   value={boyut === "M" ? 40 : boyut === "L" ? 70 : 0}
                   onChange={handleRadioChange}
                   invalid={!!errors.size && touched.size}
+                  className="radio-button"
                   data-cy={`radio-${boyut}`}
                   required
                 />
-                <Label for={boyut} className="light-text">
-                  {boyut.charAt(0).toUpperCase() + boyut.slice(1)}
+                <Label for={boyut} className="label-radio">
+                  {boyut}
                 </Label>
               </div>
             ))}
@@ -251,36 +271,40 @@ const pizzaName=pizzaData.name;
         <Col className="info-col">
           <FormGroup className="text-start">
             <Label for="crust-thickness" className="bold-text">
-              Hamur Seç
+              Hamur Seç <span className="red-text">*</span>
             </Label>
-            {touched.crust && errors.crust && (
-              <p className="red-text" data-cy="error-crust">
-                {errors.crust}
-              </p>
-            )}
-            <Input
-              id="crust-thickness"
-              name="select"
-              type="select"
-              onChange={handleCrustChange}
-              className="w-75 light-text"
-              invalid={!!errors.crust && touched.crust}
-              data-cy="crust-thickness"
-              required
-            >
-              <option className="light-text">Hamur Kalınlığı</option>
-              {pizzaData.crustThickness.map((thickness, index) => (
-                <option className="light-text " key={index} value={thickness}>
-                  {thickness.charAt(0).toUpperCase() + thickness.slice(1)}
-                </option>
-              ))}
-            </Input>
+            <div>
+              {touched.crust && errors.crust && (
+                <p className="red-text" data-cy="error-crust">
+                  {errors.crust}
+                </p>
+              )}
+              <Input
+                id="crust-thickness"
+                name="select"
+                type="select"
+                onChange={handleCrustChange}
+                className="w-75 medium-text select-container"
+                invalid={!!errors.crust && touched.crust}
+                data-cy="crust-thickness"
+                required
+              >
+                <option className="light-text">Hamur Kalınlığı</option>
+                {pizzaData.crustThickness.map((thickness, index) => (
+                  <option className="light-text" key={index} value={thickness}>
+                    {thickness.charAt(0).toUpperCase() + thickness.slice(1)}
+                  </option>
+                ))}
+              </Input>
+            </div>
           </FormGroup>
         </Col>
       </Row>
 
       <FormGroup className="text-start">
-        <p className="bold-text">Ek Malzemeler</p>
+        <p className="bold-text">
+          Ek Malzemeler <span className="red-text">*</span>
+        </p>
         <p className="light-text ">
           En Fazla 10 malzeme seçebilirsiniz. Lütfen en az 4 malzeme seçin (5₺)
         </p>
@@ -305,11 +329,13 @@ const pizzaName=pizzaData.name;
               <FormGroup check inline>
                 <Input
                   type="checkbox"
+                  name="extCheck"
                   id={`extCheck-${index}`}
                   value={extCheck}
                   checked={selectedExtra.includes(extCheck)}
                   onChange={handleSelectChange}
                   data-cy={`checkbox-${extCheck}`}
+                  className="custom-check"
                 />
                 <Label className="medium-text" check for={`extCheck-${index}`}>
                   {extCheck}
@@ -322,7 +348,7 @@ const pizzaName=pizzaData.name;
 
       <FormGroup>
         <Label for="isim" className="bold-text">
-          Adınız Soyadınız:
+          Adınız Soyadınız: <span className="red-text">*</span>
         </Label>
         {touched.nameArea && errors.nameArea && (
           <p className="red-text" data-cy="error-name">
@@ -353,6 +379,20 @@ const pizzaName=pizzaData.name;
           onChange={handleNoteChange}
           data-cy="order-note"
         />
+      </FormGroup>
+      <FormGroup>
+        <Input
+          type="checkbox"
+          id="teslimat"
+          name="teslimat"
+          checked={hizliTeslimat}
+          onChange={handleSelectChange}
+          data-cy="teslimat"
+          className="custom-check"
+        />
+        <Label for="teslimat" className="medium-text red-text">
+          Hızlı Teslimat (50₺)
+        </Label>
       </FormGroup>
 
       <hr />

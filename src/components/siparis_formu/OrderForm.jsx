@@ -7,6 +7,7 @@ export default function OrderForm({ setOrderData }) {
   return (
     <>
       <div id="order-form">
+        <img src="Assets/Iteration-2-aseets/pictures/form-banner.png" alt="" />
         <HeaderNav />
         <FormContainer setOrderData={setOrderData }/>
         

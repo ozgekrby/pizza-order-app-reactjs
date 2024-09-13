@@ -29,6 +29,7 @@ export default function Success({ orderData }) {
         })}
       </li>
       {orderData.note.length>1 && <li>Sipariş Notu: <span className="li-span">{orderData.note}</span></li>}
+      <li>Hızlı Teslimat: <span className="li-span">{orderData.teslimat}</span></li>
       </ul>
       
       <Card className="result-sum result-sum-card footer-sum">

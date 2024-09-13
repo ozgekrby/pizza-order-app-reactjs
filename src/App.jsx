@@ -17,6 +17,7 @@ function App() {
     extPrice: "",
     total: "",
     note: "",
+    teslimat:"",
   });
 
   return (
