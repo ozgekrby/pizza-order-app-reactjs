@@ -173,7 +173,6 @@ body {
   border-radius: 1.2rem;
   padding: 0.6rem 1.2rem;
   color: var(--Kırmızı);
-  margin-top: 2%;
 }
 .product-card {
   margin: 5% auto;
@@ -197,6 +196,7 @@ body {
   padding: 2% 10%;
   justify-content: center;
   gap: 1.5rem;
+  align-items: flex-start;
 }
 .address {
   width: 25% !important;
@@ -208,11 +208,36 @@ body {
 .address div {
   margin: 1rem auto;
 }
+
+.address {
+  width: 25% !important;
+  margin: 0 !important;
+  text-align: left;
+  padding-left: 0 !important;
+}
 .footer-menu {
   width: 25%;
+  text-align: left;
+  margin-top: 5%;
+}
+.footer-list-item {
+  padding-left: 0 !important;
 }
 .footer-instagram {
   width: 25%;
+  font-size: 2rem;
+  text-align: left;
+  margin-top: 4%;
+}
+.footer-instagram-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+  width: 100%;
+}
+
+.footer-instagram img {
+  width: 100%;
 }
 .success {
   display: flex;
