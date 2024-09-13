@@ -5,10 +5,11 @@ import OrderForm from "./components/siparis_formu/OrderForm";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import Success from "./components/Success";
+import Footer from "./components/Footer";
 
 function App() {
   const [orderData, setOrderData] = useState({
-    pizzaName:"",
+    pizzaName: "",
     name: "",
     adet: "",
     size: "",
@@ -17,7 +18,7 @@ function App() {
     extPrice: "",
     total: "",
     note: "",
-    teslimat:"",
+    teslimat: "",
   });
 
   return (
@@ -36,6 +37,7 @@ function App() {
             render={() => <Success orderData={orderData} />}
           />
         </Switch>
+        <Footer />
       </div>
     </Router>
   );

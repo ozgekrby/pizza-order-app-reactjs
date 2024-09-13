@@ -77,10 +77,10 @@ export default function Anasayfa() {
   return (
     <>
       <section className="home">
-        
         <div className="firsat">
-        <p className="italic-text">fırsatı kaçırma</p>
-          <img src="Assets/Iteration-1-assets/kod-aciktirir.svg" alt="" /></div>
+          <p className="italic-text">fırsatı kaçırma</p>
+          <img src="Assets/Iteration-1-assets/kod-aciktirir.svg" alt="" />
+        </div>
         <div className="btn1">
           <button onClick={handleOrderFormClick} className="main-button">
             ACIKTIM
@@ -88,90 +88,106 @@ export default function Anasayfa() {
         </div>
       </section>
       <section className="menu-section">
-      <div className="respon-home-nav">
-        {menus.map((item, i) => {
-          return (
-           
-            <Nav key={i} className="menu-items">
-              <NavItem className="w-100 d-flex respon-item">
-                <img src={`Assets/Iteration-2-aseets/icons/${i + 1}.svg`} />
-                <NavLink disabled href="#">{item}</NavLink>
-              </NavItem>
-            </Nav>
-            
-          );
-        })}
+        <div className="respon-home-nav">
+          {menus.map((item, i) => {
+            return (
+              <Nav key={i} className="menu-items">
+                <NavItem className="w-100 d-flex respon-item">
+                  <img src={`Assets/Iteration-2-aseets/icons/${i + 1}.svg`} />
+                  <NavLink disabled href="#">
+                    {item}
+                  </NavLink>
+                </NavItem>
+              </Nav>
+            );
+          })}
         </div>
       </section>
       <section className="promotion-section">
-  {promotional.map((item, index) => {
-    return (
-      <Card inverse key={index} className="home-card">
-        <CardImg className="custom-card-img" 
-          src={`Assets/Iteration-2-aseets/cta/kart-${index + 1}.png`}
-        />
-        <CardImgOverlay className="card-overlay">
-          {item.important && <span className="important">{item.important} </span>}
-          <span className={`overlay-name-${index+1}`}>{item.name}</span>
-          <br />
-          {item.exp && <CardText className="overlay-exp">{item.exp}</CardText>}
-          <button className="siparis-ver"onClick={handleOrderFormClick}>SİPARİŞ VER</button>
-        </CardImgOverlay>
-      </Card>
-    );
-  })}
-</section>
-
-
-      <div>
-        <p className="italic-text" style={{ color: "#CE2829",marginTop:"2rem"
- }}>en çopk paketlenen menüler</p>
-        <p className="bold-text" style={{ fontSize: "3rem",marginTop:"1rem"
- }}>Acıktıran Kodlara Doyuran Lezzetler</p>
-      </div>
-      <section className="menu-section">
-        {menus2.map((item, i) => {
+        {promotional.map((item, index) => {
           return (
-            <Nav key={i} className="menu-items">
-              <NavItem className="w-100 d-flex">
-                <img src={`Assets/Iteration-2-aseets/icons/${i + 1}.svg`} />
-                <NavLink disabled href="#">{item}</NavLink>
-              </NavItem>
-            </Nav>
+            <Card inverse key={index} className="home-card">
+              <CardImg
+                className="custom-card-img"
+                src={`Assets/Iteration-2-aseets/cta/kart-${index + 1}.png`}
+              />
+              <CardImgOverlay className="card-overlay">
+                {item.important && (
+                  <span className="important">{item.important} </span>
+                )}
+                <span className={`overlay-name-${index + 1}`}>{item.name}</span>
+                <br />
+                {item.exp && (
+                  <CardText className="overlay-exp">{item.exp}</CardText>
+                )}
+                <button className="siparis-ver" onClick={handleOrderFormClick}>
+                  SİPARİŞ VER
+                </button>
+              </CardImgOverlay>
+            </Card>
           );
         })}
       </section>
-      <section className="container">
-  <div className="row">
-    {products.map((item, i) => {
-      return (
-        <div className="col-md-4" key={i}>
-          <Card className="product-card" style={{ width: "100%" }}>
-            <img
-              alt="Card"
-              src={`Assets/Iteration-2-aseets/pictures/food-${i + 1}.png`}
-              className="card-img-top"
-            />
-            <CardBody>
-              <CardTitle tag="h5">{item.name}</CardTitle>
-            </CardBody>
-            <CardBody>
-              <div className="d-flex justify-content-between align-items-center light-text">
-                <span>{item.size}</span>
-                <div className="d-flex justify-content-between  align-items-center w-25 ">
-                <span >{item.gram}</span> 
-                <span className="bold-text">{item.price}</span>
-                </div>
-              </div>
-            </CardBody>
-          </Card>
-        </div>
-      );
-    })}
-  </div>
-</section>
 
-      <Footer />
+      <div>
+        <p
+          className="italic-text respon-text-home"
+          style={{ color: "#CE2829", marginTop: "2rem" }}
+        >
+          en çopk paketlenen menüler
+        </p>
+        <p
+          className="bold-text respon-text-home-2"
+          style={{ fontSize: "3rem", marginTop: "1rem" }}
+        >
+          Acıktıran Kodlara Doyuran Lezzetler
+        </p>
+      </div>
+      <section className="menu-section">
+        <div className="respon-home-nav">
+          {menus2.map((item, i) => {
+            return (
+              <Nav key={i} className="menu-items">
+                <NavItem className="w-100 d-flex respon-item">
+                  <img src={`Assets/Iteration-2-aseets/icons/${i + 1}.svg`} />
+                  <NavLink disabled href="#">
+                    {item}
+                  </NavLink>
+                </NavItem>
+              </Nav>
+            );
+          })}
+        </div>
+      </section>
+      <section className="container">
+        <div className="row respon-products">
+          {products.map((item, i) => {
+            return (
+              <div className="col-md-4 respon-card" key={i}>
+                <Card className="product-card" style={{ width: "100%" }}>
+                  <img
+                    alt="Card"
+                    src={`Assets/Iteration-2-aseets/pictures/food-${i + 1}.png`}
+                    className="card-img-top"
+                  />
+                  <CardBody>
+                    <CardTitle tag="h5">{item.name}</CardTitle>
+                  </CardBody>
+                  <CardBody>
+                    <div className="d-flex justify-content-between align-items-center light-text">
+                      <span>{item.size}</span>
+                      <div className="d-flex justify-content-between  align-items-center w-25 ">
+                        <span>{item.gram}</span>
+                        <span className="bold-text">{item.price}</span>
+                      </div>
+                    </div>
+                  </CardBody>
+                </Card>
+              </div>
+            );
+          })}
+        </div>
+      </section>
     </>
   );
 }

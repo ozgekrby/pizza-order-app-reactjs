@@ -9,12 +9,13 @@
 body {
   margin: 0;
   min-height: 100vh;
+  width: 100%;
 }
 
 #root {
   margin: 0;
   min-height: 100vh;
-  width: 100vw;
+  width: 100%;
 }
 
 .app-container {
@@ -460,20 +461,32 @@ body {
 @media (max-width: 1280px) {
   .menu-section {
     display: flex;
-    gap: 5rem;
-    font-size: 1rem;
-    flex-wrap: wrap;
-    width: 100%;
     justify-content: center;
+    padding: 2rem;
   }
 
   .respon-home-nav {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
     width: 80%;
-    flex-wrap: wrap;
+  }
+
+  .menu-items {
+    display: flex;
     justify-content: center;
-    column-gap: 10rem;
-    row-gap: 2rem;
+    align-items: center;
+  }
+
+  .respon-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .respon-item img {
+    width: 2rem;
+    height: 2rem;
   }
   .promotion-section {
     display: flex;
@@ -519,29 +532,65 @@ body {
   .overlay-exp {
     font-size: 1.2rem;
   }
-
-  .success {
+  .respon-text-home {
+    font-size: 1.5rem;
+  }
+  .respon-text-home-2 {
+    font-size: 3rem !important;
+    display: block;
+    padding: 0 13rem;
+    text-align: center;
+  }
+  .respon-products {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
   }
-  .success-text {
-    width: 60%;
-    height: 40%;
+  .respon-card {
+    width: 100% !important;
+    padding: 1rem 4rem !important;
   }
-  .success p {
-    font-size: 3rem;
-    letter-spacing: 0.1rem;
-    margin: 0;
-    padding: 0;
+  .footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
   }
+  .address {
+    width: 100% !important;
+    margin: 0 !important;
+    text-align: left;
+    padding-left: 0 !important;
+  }
+  .footer-menu {
+    width: 100%;
+    text-align: left;
+  }
+  .footer-list-item {
+    padding-left: 0 !important;
+  }
+
+  .footer-instagram {
+    width: 80%;
+    font-size: 2rem;
+    text-align: left;
+  }
+  .footer-instagram-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+    margin: 1.2rem 0;
+    width: 100%;
+  }
+
+  .footer-instagram img {
+    width: 100%;
+    height: auto;
+  }
+
   #order-form {
     width: 50%;
   }
-  .header-nav {
-    margin-top: -2.5rem;
-    margin-bottom: 1.5rem;
-  }
+
   .home-button,
   .order-page-button {
     font-size: 1rem;
@@ -556,22 +605,34 @@ body {
   .light-text {
     font-size: 0.9rem;
   }
+  .order-form-img {
+    max-width: 100%;
+  }
+  .label-radio {
+    width: 2rem;
+    height: 2rem;
+  }
   #crust-thickness {
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 600;
     border-radius: 5%;
-    height: 1.5rem;
     width: 87% !important;
     padding: 0 2%;
-  }
-  #crust-thickness option {
-    font-size: 0.8rem;
+    height: 3rem;
+    margin-top: 0.3rem;
+    background-color: var(--Bej) !important;
   }
   .medium-text {
     font-size: 0.9rem;
   }
   .mobile-check {
     column-gap: 3rem;
+  }
+  .custom-check {
+    padding: 0;
+  }
+  .no-resize {
+    resize: none;
   }
   #isim {
     font-size: 1rem;
@@ -608,87 +669,208 @@ body {
   .counting-item-number {
     font-size: 0.8rem;
     padding: 13% !important;
+  }
+
+  .success-text {
+    width: 40%;
+    margin-top: 1rem;
+  }
+
+  .verify {
+    font-size: 3rem;
+    letter-spacing: 0.1rem;
+  }
+  .success ul {
+    width: 40%;
+  }
+  .success li {
+    font-size: 1rem;
+  }
+  .li-span {
+    font-size: 1rem;
+  }
+  .footer-sum {
+    font-size: 1rem;
+    width: 40% !important;
   }
 }
 
 @media (max-width: 767px) {
-  .header-default,
-  .header-home {
-    padding: 0 !important;
+  .menu-section {
     display: flex;
     justify-content: center;
-    align-items: center;
-  }
-  .header-default img {
-    width: 20rem;
-    margin: 8% auto;
-  }
-  .header-home img {
-    width: 20rem;
-    margin: 20% auto;
-    margin-top: 50%;
-  }
-  .home img {
-    width: 20rem;
-    margin-top: 25%;
+    padding: 2rem;
   }
 
-  .main-button {
-    padding: 0.5% 3%;
+  .respon-home-nav {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    width: 80%;
   }
-  .success {
+
+  .menu-items {
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  .success-text {
-    width: 100%;
-    height: 40%;
+
+  .respon-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
   }
-  .success p {
+
+  .respon-item img {
+    width: 40px;
+    height: 40px;
+  }
+  .promotion-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 1rem;
+    padding-top: 1rem;
+  }
+  .home-card {
+    width: 80%;
+  }
+  .custom-card-img {
+    height: 55vh;
+    object-fit: cover;
+  }
+
+  .card-overlay {
+    margin-right: 30%;
+    margin-left: 5%;
+    line-height: 2rem;
+    padding-top: 15% !important;
+  }
+  .important {
+    font-size: 4rem;
+    font-weight: 600;
+    text-align: left;
+    color: var(--Kırmızı);
+  }
+  .overlay-name-1 {
     font-size: 5rem;
-    letter-spacing: 0.1rem;
-    margin: 0;
-    padding: 0;
+    font-weight: 600;
+    line-height: 4rem;
   }
+  .overlay-name-2 {
+    font-size: 3rem;
+    margin-right: 40%;
+  }
+  .overlay-name-3 {
+    font-size: 4rem;
+    margin-right: 50%;
+  }
+  .overlay-exp {
+    font-size: 1.2rem;
+  }
+  .respon-text-home {
+    font-size: 1.5rem;
+  }
+  .respon-text-home-2 {
+    font-size: 3rem !important;
+    display: block;
+    padding: 0 13rem;
+    text-align: center;
+  }
+  .respon-products {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .respon-card {
+    width: 100% !important;
+    padding: 1rem 4rem !important;
+  }
+  .footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .address {
+    width: 100% !important;
+    margin: 0 !important;
+    text-align: left;
+    padding-left: 0 !important;
+  }
+  .footer-menu {
+    width: 100%;
+    text-align: left;
+  }
+  .footer-list-item {
+    padding-left: 0 !important;
+  }
+
+  .footer-instagram {
+    width: 80%;
+    font-size: 2rem;
+    text-align: left;
+  }
+  .footer-instagram-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+    margin: 1.2rem 0;
+    width: 100%;
+  }
+
+  .footer-instagram img {
+    width: 100%;
+    height: auto;
+  }
+
   #order-form {
-    width: 70%;
+    width: 50%;
   }
-  .header-nav {
-    margin-top: -2.5rem;
-    margin-bottom: 1.5rem;
-  }
+
   .home-button,
   .order-page-button {
     font-size: 1rem;
   }
 
   .bold-text {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
   .expl-text {
-    font-size: 1.1rem !important;
+    font-size: 1rem !important;
   }
   .light-text {
-    font-size: 1rem;
+    font-size: 0.9rem;
+  }
+  .order-form-img {
+    max-width: 100%;
+  }
+  .label-radio {
+    width: 2rem;
+    height: 2rem;
   }
   #crust-thickness {
     font-size: 1rem;
     font-weight: 600;
     border-radius: 5%;
-    height: 1.5rem;
     width: 87% !important;
     padding: 0 2%;
-  }
-  #crust-thickness option {
-    font-size: 1rem;
+    height: 3rem;
+    margin-top: 0.3rem;
+    background-color: var(--Bej) !important;
   }
   .medium-text {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
   .mobile-check {
     column-gap: 3rem;
   }
+  .custom-check {
+    padding: 0;
+  }
+  .no-resize {
+    resize: none;
+  }
   #isim {
     font-size: 1rem;
     font-weight: 500;
@@ -724,93 +906,220 @@ body {
   .counting-item-number {
     font-size: 0.8rem;
     padding: 13% !important;
+  }
+
+  .success-text {
+    width: 40%;
+  }
+
+  .verify {
+    font-size: 2rem;
+    letter-spacing: 0.1rem;
+  }
+  .success ul {
+    width: 40%;
+  }
+  .success li {
+    font-size: 1rem;
+    line-height: 2rem;
+  }
+  .li-span {
+    font-size: 1rem;
+  }
+  .footer-sum {
+    font-size: 1rem;
+    width: 40% !important;
   }
 }
 
 @media (max-width: 480px) {
-  .header-default,
-  .header-home {
-    padding: 0 !important;
+  .menu-section {
     display: flex;
     justify-content: center;
-    align-items: center;
   }
-  .header-default img {
-    width: 15rem;
-    margin: 10% auto;
-  }
-  .header-home img {
-    width: 15rem;
-    margin: 20% auto;
-    margin-top: 50%;
-  }
-  .home img {
-    width: 20rem;
-    margin-top: 25%;
-  }
-  .success {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .success-text {
+
+  .respon-home-nav {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
     width: 100%;
-    height: 40%;
   }
-  .success p {
-    font-size: 3rem;
-    letter-spacing: 0.1rem;
-    margin: 0;
-    padding: 0;
+
+  .menu-items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-  #order-form {
+
+  .respon-item {
+    display: flex;
+    align-items: center;
+  }
+
+  .respon-item img {
+    width: 2rem;
+    height: 2rem;
+  }
+  .promotion-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 1rem;
+    padding-top: 1rem;
+  }
+  .home-card {
     width: 80%;
   }
-  .header-nav {
-    margin-top: -1.9rem;
-    margin-bottom: 1rem;
+  .custom-card-img {
+    height: 40vh;
+    object-fit: cover;
   }
+
+  .card-overlay {
+    margin-right: 10%;
+    margin-left: 5%;
+    line-height: 2rem;
+    padding-top: 15% !important;
+  }
+  .important {
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: left;
+    color: var(--Kırmızı);
+  }
+  .overlay-name-1 {
+    font-size: 3rem;
+    font-weight: 600;
+    line-height: 2rem;
+  }
+  .overlay-name-2 {
+    font-size: 2rem;
+    margin-right: 40%;
+  }
+  .overlay-name-3 {
+    font-size: 2rem;
+    margin-right: 50%;
+  }
+  .overlay-exp {
+    font-size: 1rem;
+  }
+  .respon-text-home {
+    font-size: 1.2rem;
+  }
+  .respon-text-home-2 {
+    font-size: 2.5rem !important;
+    display: block;
+    padding: 0 2rem;
+    text-align: center;
+  }
+  .respon-products {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .respon-card {
+    width: 100% !important;
+    padding: 1rem 4rem !important;
+  }
+  .footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .footer-tekno {
+    width: 100%;
+  }
+  .footer-tekno img {
+    max-width: 100%;
+    max-height: 4rem;
+  }
+  .address {
+    width: 100% !important;
+    margin: 0 !important;
+    text-align: left;
+    padding-left: 0 !important;
+  }
+  .footer-menu {
+    width: 100%;
+    text-align: left;
+  }
+  .footer-list-item {
+    padding-left: 0 !important;
+  }
+
+  .footer-instagram {
+    width: 80%;
+    font-size: 2rem;
+    text-align: left;
+  }
+  .footer-instagram-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+    margin: 1.2rem 0;
+    width: 100%;
+  }
+
+  .footer-instagram img {
+    width: 100%;
+    height: auto;
+  }
+
+  #order-form {
+    width: 50%;
+  }
+
   .home-button,
   .order-page-button {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
+
   .bold-text {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
   .expl-text {
-    font-size: 0.8rem !important;
+    font-size: 1rem !important;
   }
   .light-text {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
+  }
+  .order-form-img {
+    max-width: 100%;
+  }
+  .label-radio {
+    width: 2rem;
+    height: 2rem;
   }
   #crust-thickness {
-    font-size: 0.7rem;
+    font-size: 1rem;
     font-weight: 600;
     border-radius: 5%;
-    height: 1.2rem;
     width: 87% !important;
     padding: 0 2%;
-  }
-  #crust-thickness option {
-    font-size: 0.8rem;
+    height: 3rem;
+    margin-top: 0.3rem;
+    background-color: var(--Bej) !important;
   }
   .medium-text {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
   .mobile-check {
-    column-gap: 1rem;
-    flex-direction: row;
+    column-gap: 3rem;
   }
-  .checks {
-    width: 30%;
+  .custom-check {
+    padding: 0;
+  }
+  .no-resize {
+    resize: none;
   }
   #isim {
-    font-size: 0.7rem;
+    font-size: 1rem;
     font-weight: 500;
     padding: 2% 2%;
   }
   #order-note {
-    font-size: 0.7rem;
+    font-size: 1rem;
     font-weight: 500;
     padding: 2% 2%;
   }
@@ -839,5 +1148,28 @@ body {
   .counting-item-number {
     font-size: 0.8rem;
     padding: 13% !important;
+  }
+
+  .success-text {
+    width: 40%;
+  }
+
+  .verify {
+    font-size: 2rem;
+    letter-spacing: 0.1rem;
+  }
+  .success ul {
+    width: 40%;
+  }
+  .success li {
+    font-size: 1rem;
+    line-height: 2rem;
+  }
+  .li-span {
+    font-size: 1rem;
+  }
+  .footer-sum {
+    font-size: 1rem;
+    width: 40% !important;
   }
 }
