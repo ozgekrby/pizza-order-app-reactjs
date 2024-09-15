@@ -411,14 +411,17 @@ body {
   height: 4.7rem;
   margin-top: 0.3rem;
   background-color: var(--Bej) !important;
+  cursor: pointer;
 }
 .select-container option {
   background-color: var(--Bej);
+  cursor: pointer;
 }
 .custom-check {
   border: none;
   background-color: #faf7f2;
   padding: 1rem;
+  cursor: pointer;
 }
 .custom-check:checked {
   background-color: #fdc913 !important;
@@ -452,9 +455,11 @@ body {
 .submit {
   width: 68%;
   margin-left: 32%;
+  cursor: pointer;
 }
 .submit-button {
   width: 100%;
+  
 }
 .result-sum-card {
   padding: 1rem 2rem !important;
@@ -484,6 +489,41 @@ body {
   gap: 2rem;
 }
 @media (max-width: 1280px) {
+  .header-home {
+    width: 100%;
+    margin-top: 10%;
+  }
+  .header-default {
+    width: 100%;
+    padding: 2%;
+  }
+  .header-home img {
+    height: 3rem;
+  }
+  .header-default img {
+    height: 3rem;
+  }
+  .home{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .firsat{
+    margin-top: 10%;
+    width: 90%;
+  }
+  .italic-text{
+    font-size: 2rem;
+  }
+  
+  .firsat img{
+ width: 100%;
+  }
+  .main-button {
+    border-radius: 3rem;
+    font-size: 1.2rem;
+    padding: 1rem 2rem;
+  }
   .menu-section {
     display: flex;
     justify-content: center;
@@ -560,6 +600,7 @@ body {
   .respon-text-home {
     font-size: 1.5rem;
   }
+  
   .respon-text-home-2 {
     font-size: 3rem !important;
     display: block;
@@ -721,6 +762,41 @@ body {
 }
 
 @media (max-width: 767px) {
+  .header-home {
+    width: 100%;
+    margin-top: 20%;
+  }
+  .header-default {
+    width: 100%;
+    padding: 2%;
+  }
+  .header-home img {
+    height: 3rem;
+  }
+  .header-default img {
+    height: 3rem;
+  }
+  .home{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .firsat{
+    margin-top: 30%;
+    width: 100%;
+  }
+  .italic-text{
+    font-size: 2rem;
+  }
+  
+  .firsat img{
+ width: 100%;
+  }
+  .main-button {
+    border-radius: 3rem;
+    font-size: 1.1rem;
+    padding: 0.8rem 1.7rem;
+  }
   .menu-section {
     display: flex;
     justify-content: center;
